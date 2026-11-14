@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ghost Rovers: Letters from NASA’s Silent Machines</title>
+<style>
+:root{color-scheme:dark;--bg:#070b1a;--ink:#e9edf9;--mut:#9aa6c7;--card:#111a35;--acc:#ffb84d;--acc2:#6fd3ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+#stars{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+main{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 18px 80px}
+#bar{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:4px;width:0;background:linear-gradient(90deg,var(--acc2),var(--acc));z-index:9}
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;text-align:center}
+h1{font-size:clamp(2.2rem,8vw,3.8rem);line-height:1.1;margin:0 0 12px}
+h1 span{color:var(--acc)}
+.sub{color:var(--mut);font-size:1.1rem}
+.go{margin:28px auto 0;background:var(--acc);color:#1a1200;border:0;border-radius:99px;padding:14px 28px;font-size:1rem;font-weight:700;cursor:pointer;animation:pulse 2s infinite}
+@keyframes pulse{50%{transform:scale(1.06)}}
+.ch{min-height:90vh;padding:40px 0;opacity:.15;transform:translateY(30px);transition:all .8s}
+.ch.on{opacity:1;transform:none}
+.tag{color:var(--acc2);font-size:.8rem;letter-spacing:.15em;text-transform:uppercase}
+h2{margin:4px 0 14px;font-size:1.9rem}
+.scene{width:100%;border-radius:18px;border:1px solid #243059;background:#0a1230;display:block}
+.say{background:var(--card);border-left:4px solid var(--acc);border-radius:10px;padding:14px 16px;margin:16px 0;min-height:7.5em;font-size:1.05rem}
+.stat{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.stat b{background:#18244a;border-radius:99px;padding:4px 12px;font-size:.85rem;font-weight:600}
+details{background:var(--card);border-radius:12px;padding:12px 16px;margin-top:10px}
+summary{cursor:pointer;font-weight:700;color:var(--acc)}
+.end{text-align:center;padding:60px 0}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.gal{padding:30px 0}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.tabs button{background:#18244a;color:var(--ink);border:1px solid #243059;border-radius:99px;padding:8px 16px;font-size:.9rem;cursor:pointer}
+.tabs button.sel{background:var(--acc);color:#1a1200;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid #243059;border-radius:14px;padding:14px;text-align:left;color:var(--ink);font:inherit;cursor:pointer}
+.card .ic{font-size:2.2rem;display:inline-block;animation:flt 3.5s ease-in-out infinite}
+.card:nth-child(2n) .ic{animation-delay:-1.2s}.card:nth-child(3n) .ic{animation-delay:-2.2s}
+@keyframes flt{50%{transform:translateY(-8px) rotate(6deg)}}
+.card h3{margin:6px 0 2px;font-size:1.05rem}
+.card small{color:var(--acc2)}
+.card .more{display:none;font-size:.92rem;margin-top:8px}
+.card.open .more{display:block}
+.card a{color:var(--acc)}
+/* scene animations */
+.tw{animation:tw 3s infinite alternate}
+@keyframes tw{from{opacity:.3}to{opacity:1}}
+.lift{animation:lift 6s ease-in infinite}
+@keyframes lift{0%,40%{transform:translateY(0)}100%{transform:translateY(-190px);opacity:0}}
+.laser{stroke-dasharray:6 10;animation:dash 1.2s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-32}}
+.drive{animation:drive 9s ease-in-out infinite}
+@keyframes drive{0%{transform:translateX(0)}70%,100%{transform:translateX(330px)}}
+.wheel{transform-box:fill-box;transform-origin:center;animation:spin 3s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.dust{animation:dust 9s ease-in-out infinite}
+@keyframes dust{0%,40%{opacity:0}85%,100%{opacity:.85}}
+.sunk{animation:sunk 9s ease-in-out infinite}
+@keyframes sunk{0%,40%{opacity:1}85%,100%{opacity:.15}}
+.hover{animation:hov 4s ease-in-out infinite}
+@keyframes hov{0%,100%{transform:translateY(40px)}40%,60%{transform:translateY(0)}}
+.rotor{transform-box:fill-box;transform-origin:center;animation:rot .12s linear infinite}
+@keyframes rot{50%{transform:scaleX(.15)}}
+.shadow{animation:sh 4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes sh{0%,100%{transform:scale(1)}40%,60%{transform:scale(.6);opacity:.4}}
+.streak{animation:str 1.6s linear infinite}
+@keyframes str{from{transform:translateX(0)}to{transform:translateX(-760px)}}
+.ring{transform-box:fill-box;transform-origin:center;animation:ring 2.4s ease-out infinite;opacity:0}
+@keyframes ring{from{transform:scale(.2);opacity:.9}to{transform:scale(1.6);opacity:0}}
+</style></head><body>
+<canvas id="stars"></canvas><div id="bar"></div>
+<main>
+<section class="hero">
+ <div class="tag">A story told by the machines themselves</div>
+ <h1>Ghost <span>Rovers</span></h1>
+ <p class="sub">NASA has left robots on the Moon, on Mars, and out in deep space. Some went quiet. Some are still talking. Scroll down and let four of them tell you their own stories.</p>
+ <button class="go" onclick="document.getElementById('c1').scrollIntoView()">Start listening ↓</button>
+</section>
+
+<section class="ch" id="c1" data-say="I’m the bottom half of Eagle, the Apollo 11 Lunar Module. On July 20, 1969, I landed Neil Armstrong and Buzz Aldrin at Tranquility Base, and later became their launch pad. The top half carried them home. I stayed behind, with a science package and a laser mirror nearby.">
+ <div class="tag">Chapter 1 · The Moon</div><h2>Eagle’s Descent Stage</h2>
+ <svg class="scene" viewBox="0 0 760 330" role="img" aria-label="A gold lander base on the Moon while the top half lifts away and a laser beam travels toward Earth">
+  <circle cx="660" cy="60" r="26" fill="#4a90e2"/><circle cx="652" cy="54" r="10" fill="#7bd389" opacity=".8"/>
+  <path d="M0 270 Q380 235 760 270 V330 H0Z" fill="#8b8b92"/>
+  <ellipse cx="200" cy="300" rx="30" ry="5" fill="#6d6d74"/><ellipse cx="560" cy="290" rx="40" ry="6" fill="#6d6d74"/>
+  <line class="laser" x1="470" y1="240" x2="650" y2="75" stroke="#ff5a5a" stroke-width="3"/>
+  <g transform="translate(330 215)"><path d="M10 40 L-8 62M90 40 L108 62M50 40 V64" stroke="#d9d9d9" stroke-width="4"/>
+   <rect x="0" y="12" width="100" height="30" fill="#e0a93a" stroke="#b7821c" stroke-width="2"/>
+   <g class="lift"><rect x="22" y="-26" width="56" height="38" rx="8" fill="#cfd3dc"/><rect x="36" y="-16" width="14" height="12" fill="#2b3555"/></g></g>
+  <rect x="470" y="240" width="22" height="12" fill="#3b4261"/>
+  <text x="380" y="316" fill="#fff" font-size="13" text-anchor="middle">Laser mirror (red beam) · needs no power</text>
+ </svg>
+ <div class="say"></div>
+ <div class="stat"><b>Landed July 20, 1969</b><b>21 h 36 min on the Moon</b><b>Status: left behind</b></div>
+ <details><summary>Science it unlocked</summary><p>The crew set up a package called EASEP: a seismometer to listen for moonquakes and a dust detector, powered by solar panels so it only worked in daylight. It was switched off in August 1969. The laser mirror next to it needs no power at all. Its big sister, ALSEP, flew on later missions. Source: <a href="https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C" target="_blank" rel="noopener" style="color:var(--acc)">NASA NSSDCA</a>.</p></details>
+</section>
+
+<section class="ch" id="c2" data-say="I’m Opportunity, one of two twin rovers sent to hunt for signs of past water. I landed at Meridiani Planum on January 24, 2004, and drove 45.16 kilometers. A planet-wide dust storm covered my solar panels, and I last called home on June 10, 2018. My driving record lasted until October 11, 2026, when my successor Perseverance rolled past it.">
+ <div class="tag">Chapter 2 · Mars</div><h2>Opportunity the Marathon Rover</h2>
+ <svg class="scene" viewBox="0 0 760 330" role="img" aria-label="A rover drives across Mars until a dust storm darkens the sky and hides the Sun">
+  <defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c98a62"/><stop offset="1" stop-color="#f0b98a"/></linearGradient></defs>
+  <rect width="760" height="330" fill="url(#sk)"/>
+  <circle class="sunk" cx="620" cy="70" r="22" fill="#fff4cf"/>
+  <path d="M0 250 Q200 225 400 245 T760 240 V330 H0Z" fill="#a4532f"/>
+  <g class="drive"><g transform="translate(60 205)"><rect x="8" y="10" width="70" height="22" fill="#d9dde8" stroke="#8a90a3" stroke-width="2"/>
+   <rect x="20" y="-14" width="46" height="4" fill="#2a3a8c"/><rect x="38" y="-10" width="4" height="22" fill="#8a90a3"/><rect x="60" y="-4" width="10" height="8" fill="#333"/>
+   <g class="wheel"><circle cx="14" cy="44" r="10" fill="#333"/><line x1="14" y1="34" x2="14" y2="54" stroke="#999"/></g>
+   <g class="wheel"><circle cx="44" cy="44" r="10" fill="#333"/><line x1="44" y1="34" x2="44" y2="54" stroke="#999"/></g>
+   <g class="wheel"><circle cx="74" cy="44" r="10" fill="#333"/><line x1="74" y1="34" x2="74" y2="54" stroke="#999"/></g></g></g>
+  <rect class="dust" width="760" height="330" fill="#3a1f12"/>
+  <text class="dust" x="380" y="170" fill="#ffd9b8" font-size="18" text-anchor="middle">Planet-wide dust storm · 2018</text>
+ </svg>
+ <div class="say"></div>
+ <div class="stat"><b>Landed Jan 24, 2004</b><b>Drove 45.16 km</b><b>Last contact June 10, 2018</b></div>
+ <details><summary>Science it unlocked</summary><p>By studying rocks, Spirit and Opportunity confirmed that water stayed on Mars’ surface for a long time in the ancient past. Spirit landed in Gusev Crater, a possible former lake, drove 7.7 km and finished its mission in 2010. Source: <a href="https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/" target="_blank" rel="noopener" style="color:var(--acc)">NASA Science</a>.</p></details>
+</section>
+
+<section class="ch" id="c3" data-say="Engineers built me as a technology demo: five test flights in 30 days. I flew 72 times in nearly three years. On April 19, 2021, I made the first powered, controlled flight on another planet, in air less than 1 percent as dense as Earth’s. My last flight was January 18, 2024, and my mission ended a week later.">
+ <div class="tag">Chapter 3 · Mars, again</div><h2>Ingenuity the Little Helicopter</h2>
+ <svg class="scene" viewBox="0 0 760 330" role="img" aria-label="A small helicopter hovers above the surface of Mars">
+  <rect width="760" height="330" fill="#e2a47a"/><path d="M0 260 Q300 235 760 255 V330 H0Z" fill="#a4532f"/>
+  <ellipse class="shadow" cx="380" cy="285" rx="45" ry="7" fill="#5a2c17"/>
+  <g class="hover"><g transform="translate(345 110)">
+   <ellipse class="rotor" cx="35" cy="-10" rx="95" ry="5" fill="#222"/><ellipse class="rotor" cx="35" cy="4" rx="95" ry="5" fill="#444"/>
+   <rect x="22" y="-6" width="26" height="12" fill="#222"/><rect x="18" y="10" width="34" height="34" rx="4" fill="#f4f4f4" stroke="#8a90a3" stroke-width="2"/>
+   <rect x="26" y="-30" width="18" height="20" fill="#2a3a8c"/>
+   <path d="M18 44 L6 80M52 44 L64 80M18 44 L52 44" stroke="#333" stroke-width="3"/></g></g>
+ </svg>
+ <div class="say"></div>
+ <div class="stat"><b>First flight Apr 19, 2021</b><b>72 flights · 128.8 min</b><b>Flew 17 km total</b></div>
+ <details><summary>Science it unlocked</summary><p>Ingenuity scouted ahead for the Perseverance rover, photographed terrain from above, and even spotted the rover’s landing hardware. NASA’s planned SkyFall mission builds on its success with next-generation Mars helicopters. Source: <a href="https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/" target="_blank" rel="noopener" style="color:var(--acc)">NASA Science</a>.</p></details>
+</section>
+
+<section class="ch" id="c4" data-say="I’m Voyager 1, launched in 1977 to explore the outer planets. In 2012 I entered interstellar space. On November 18, 2026, I will have traveled one light-day from Earth: more than 25 billion kilometers, so light from Earth needs 24 hours to reach me. I’m the most distant human-made object.">
+ <div class="tag">Chapter 4 · Interstellar space</div><h2>Voyager 1, Still Talking</h2>
+ <svg class="scene" viewBox="0 0 760 330" role="img" aria-label="A spacecraft with a big dish flies past streaking stars while sending signal rings toward Earth">
+  <rect width="760" height="330" fill="#050816"/>
+  <g class="streak" stroke="#8fa4ff" stroke-width="2"><line x1="800" y1="60" x2="900" y2="60"/><line x1="1000" y1="120" x2="1130" y2="120"/><line x1="900" y1="200" x2="1000" y2="200"/><line x1="1200" y1="270" x2="1330" y2="270"/><line x1="1350" y1="40" x2="1450" y2="40"/><line x1="1450" y1="160" x2="1560" y2="160"/></g>
+  <g transform="translate(330 120)">
+   <circle class="ring" cx="-20" cy="50" r="60" fill="none" stroke="#6fd3ff" stroke-width="2"/>
+   <path d="M-10 10 Q-50 50 -10 90 Z" fill="#dfe3ee" stroke="#8a90a3" stroke-width="2"/>
+   <rect x="-4" y="30" width="60" height="40" fill="#e0a93a" stroke="#b7821c" stroke-width="2"/>
+   <line x1="56" y1="50" x2="150" y2="20" stroke="#aaa" stroke-width="3"/><circle cx="150" cy="20" r="5" fill="#ff8a4d"/>
+   <line x1="30" y1="70" x2="30" y2="130" stroke="#aaa" stroke-width="3"/><circle cx="30" cy="132" r="5" fill="#ff8a4d"/>
+   <circle cx="30" cy="50" r="9" fill="#ffd36a"/></g>
+  <text x="14" y="318" fill="#9aa6c7" font-size="13">One light-day away · a signal takes about 24 hours</text>
+ </svg>
+ <div class="say"></div>
+ <div class="stat"><b>Launched 1977</b><b>Interstellar since 2012</b><b>One light-day: Nov 18, 2026</b></div>
+ <details><summary>Science it unlocked</summary><p>Voyager 1 and 2 were built to use a planet alignment that happens only once every 176 years. Voyager 2 entered interstellar space in 2018. Both still study space beyond the heliosphere, the Sun’s protective bubble. Source: <a href="https://www.nasa.gov/news-release/nasa-invites-media-public-to-join-voyager-1-one-light-day-activities/" target="_blank" rel="noopener" style="color:var(--acc)">NASA news release</a>.</p></details>
+</section>
+
+<section class="gal">
+ <div class="tag">The Ghost Fleet</div><h2>More Silent Machines</h2>
+ <p class="sub">Eleven more robots from NASA’s archive. Pick a place, then tap a card to hear its story and open its official NASA page.</p>
+ <div class="tabs" id="tabs"></div>
+ <div class="grid" id="grid"></div>
+</section>
+<section class="end">
+ <h2>The robots never really left.</h2>
+ <p class="sub">Every picture, every measurement, every first flight is still teaching us. The next explorers who walk on the Moon or fly over Mars are standing on what these machines found. Maybe one of them will be you.</p>
+</section>
+<p class="sub" style="font-size:.85rem;margin-top:30px">Facts checked against <a href="https://nssdc.gsfc.nasa.gov/" target="_blank" rel="noopener" style="color:var(--acc)">NASA’s NSSDCA</a> and NASA Science mission pages. This is an independent educational project and is not endorsed by NASA.</p>
+</main>
+<script>
+// starfield
+const cv=document.getElementById('stars'),cx=cv.getContext('2d');let S=[];
+function size(){cv.width=innerWidth;cv.height=innerHeight;S=Array.from({length:110},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.4+.3,s:Math.random()*.25+.05}))}
+size();addEventListener('resize',size);
+(function f(){cx.clearRect(0,0,cv.width,cv.height);cx.fillStyle='#fff';
+for(const s of S){s.y+=s.s;if(s.y>cv.height)s.y=0;cx.globalAlpha=.4+.5*Math.random()*.5+.2;cx.beginPath();cx.arc(s.x,s.y,s.r,0,7);cx.fill()}
+requestAnimationFrame(f)})();
+const F=[
+['Moon','🛰️','Surveyor 3','Landed 1967','I was one of the 1960s robot landers that proved soft landings on the Moon were possible. In November 1969, Apollo 12 astronauts landed about 180 meters from me and brought about 10 kg of my parts back to Earth.','https://science.nasa.gov/mission/surveyor-3/'],
+['Moon','🛞','Lunar Roving Vehicles','Apollo 15, 16, 17','We’re three electric moon buggies driven by astronauts. We rode to the Moon on the Apollo 15, 16 and 17 landers, and we’re parked there permanently.','https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1971-063C'],
+['Moon','📡','ALSEP Science Stations','Apollo 12 · 1969–1977','Astronauts left us behind to keep doing science. Apollo 12’s station switched on November 19, 1969, and all the ALSEP stations were shut down on September 30, 1977.','https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-099C'],
+['Mars','🤖','Sojourner','Pathfinder · 1997','I was the first rover on Mars, delivered by the Pathfinder lander in 1997. Now I’m parked for good.','https://science.nasa.gov/mission/mars-pathfinder/'],
+['Mars','🧭','Spirit','Landed Jan 3, 2004','Opportunity’s twin. I landed in Gusev Crater, a possible ancient lake, drove 7.7 km, and finished my mission in 2010.','https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/'],
+['Mars','🔬','Viking 1 & 2','Landed 1976','We were the first U.S. landers to successfully operate on Mars. We’re still exactly where we touched down.','https://science.nasa.gov/mission/viking-1/'],
+['Mars','❄️','Phoenix & InSight','Mars landers','Phoenix dug for water ice. InSight listened for marsquakes. Both eventually lost power.','https://science.nasa.gov/mission/insight/'],
+['Deep space','🌑','Dawn','Orbiting Ceres','I mapped two worlds, Vesta and Ceres. When my fuel ran out, I stayed in a silent, unpowered orbit around Ceres.','https://science.nasa.gov/mission/dawn/'],
+['Deep space','🪨','NEAR Shoemaker','Asteroid Eros','I was the first spacecraft to orbit and land on an asteroid. I’m resting on the surface of 433 Eros.','https://science.nasa.gov/mission/near-shoemaker/'],
+['Deep space','🏷️','Pioneer 10','Launched 1972','I was the first spacecraft to fly past Jupiter (December 4, 1973). I was built for 21 months and lasted more than 30 years. My last signal came on January 23, 2003, and I carry a plaque for any aliens who find me.','https://science.nasa.gov/mission/pioneer-10/'],
+['Deep space','🔭','Kepler Space Telescope','Earth-trailing orbit','I hunted for planets around other stars. When my fuel ran out, I was left drifting in an orbit that trails behind Earth.','https://science.nasa.gov/mission/kepler/']
+];
+const tabs=document.getElementById('tabs'),grid=document.getElementById('grid');
+function show(k){[...tabs.children].forEach(b=>b.classList.toggle('sel',b.textContent===k));grid.innerHTML='';
+F.filter(f=>k==='All'||f[0]===k).forEach(f=>{const c=document.createElement('div');c.className='card';c.tabIndex=0;c.setAttribute('role','button');
+c.innerHTML='<span class="ic">'+f[1]+'</span><h3>'+f[2]+'</h3><small>'+f[0]+' · '+f[3]+'</small><div class="more"><p>“'+f[4]+'”</p><a href="'+f[5]+'" target="_blank" rel="noopener">NASA page ↗</a></div>';
+c.onclick=e=>{if(e.target.tagName!=='A')c.classList.toggle('open')};c.onkeydown=e=>{if(e.key==='Enter')c.click()};grid.appendChild(c)})}
+['All','Moon','Mars','Deep space'].forEach(k=>{const b=document.createElement('button');b.textContent=k;b.onclick=()=>show(k);tabs.appendChild(b)});show('All');
+// typewriter + reveal
+function type(el,t){el.textContent='';let i=0;(function n(){el.textContent=t.slice(0,++i);if(i<t.length)setTimeout(n,18)})()}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!e.target.on){e.target.on=1;e.target.classList.add('on');type(e.target.querySelector('.say'),e.target.dataset.say)}}),{threshold:.35});
+document.querySelectorAll('.ch').forEach(c=>io.observe(c));
+addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('bar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'});
+</script>
+</body></html>
